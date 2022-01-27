@@ -2,10 +2,12 @@ PROJECT_DIR = $(TUP_CWD)
 
 OPT_FLAG = -O2
 
-CFLAGS += -fPIC $(OPT_FLAG) -Wall -Wextra -Wno-unused-parameter
+CFLAGS += -fvisibility=default -fPIC -fno-plt $(OPT_FLAG) -Wall -Wextra -Wno-unused-parameter
 CXXFLAGS += -std=c++14 $(CFLAGS) -fno-rtti
 
-LINK_FLAGS =
+RPATH_NEWPLUS=\$ORIGIN/newplus
+LINK_FLAGS = -Wl,-rpath,$(RPATH_NEWPLUS)
+# LINK_FLAGS =
 
 NAME = %d
 
@@ -25,7 +27,7 @@ CXX = g++
 
 !cxx_exe = |> $(CXX) -o %o $(OPT_FLAG) %f $(LINK_FLAGS) |> $(NAME)
 
-!cc_shared = |> $(CC) -o %o -shared $(OPT_FLAG) -Wl,--whole-archive %f -Wl,--no-whole-archive |> lib$(NAME).so
+!cc_shared = |> $(CC) -o %o -shared $(OPT_FLAG) -Wl,-undefined,dynamic_lookup -Wl,-all_load %f |> lib$(NAME).so
 
-!cxx_shared = |> $(CXX) -o %o -shared $(OPT_FLAG) -Wl,--whole-archive %f -Wl,--no-whole-archive |> lib$(NAME).so
+!cxx_shared = |> $(CXX) -o %o -shared $(OPT_FLAG) -Wl,-undefined,dynamic_lookup -Wl,-all_load %f |> lib$(NAME).so
 

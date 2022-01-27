@@ -42,5 +42,5 @@ fn run(count: i32) void {
     }
     
     const elapsed = c.current_timestamp() - start;
-    _ = c.printf(c"%lld\n", elapsed);
+    _ = c.printf("%lld\n", elapsed);
 }

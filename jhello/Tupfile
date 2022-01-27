@@ -2,9 +2,10 @@ include_rules
 
 # =====================================
 
-JAVA_HOME = /usr/lib/jvm/java-7-oracle
+# JAVA_HOME = /usr/lib/jvm/java-7-oracle
+JAVA_HOME = /Library/Java/JavaVirtualMachines/jdk-12.jdk/Contents/Home
 
-CFLAGS += -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux
+CFLAGS += -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/darwin
 
 N1 = newplus
 DIR1 = $(PROJECT_DIR)/$(N1)

@@ -1,10 +1,10 @@
+#include <stdlib.h>
 #include <stdio.h>
 #include "newplus/plus.h"
 
 void run(int count)
 {
     long long start = current_timestamp();
-    long long end;
     
     int x = 0;
     while (x < count)
