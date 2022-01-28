@@ -1,6 +1,6 @@
 PROJECT_DIR = $(TUP_CWD)
 
-OPT_FLAG = -O2
+OPT_FLAG = -Oz
 
 CFLAGS += -fvisibility=default -fPIC -fno-plt $(OPT_FLAG) -Wall -Wextra -Wno-unused-parameter
 CXXFLAGS += -std=c++14 $(CFLAGS) -fno-rtti
@@ -11,9 +11,10 @@ LINK_FLAGS = -Wl,-rpath,$(RPATH_NEWPLUS)
 
 NAME = %d
 
-CC = gcc
-
-CXX = g++
+CC = clang
+#CC = /Users/pickett/.konan/dependencies/target-toolchain-2-osx-android_ndk/bin/aarch64-linux-android21-clang
+#CXX = /Users/pickett/.konan/dependencies/target-toolchain-2-osx-android_ndk/bin/aarch64-linux-android21-clang++
+CXX = clang++
 
 # =====================================
 

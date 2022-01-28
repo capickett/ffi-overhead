@@ -67,3 +67,7 @@ NODE_CXX_FLAGS = $(CXXFLAGS) -fno-exceptions
 
 # LINK_FLAGS += -lm
 # : wren/*.o wren/*.a | $(DEPS) |> !cc_exe |> wren_hello
+
+# kotlin (native)
+: kotlin/newplus.def | $(DEPS) |> cinterop -def %f -compiler-option -I./%B -o kotlin/%B.klib |> kotlin/%B.klib kotlin/%B.klib-build/manifest.properties kotlin/%B.klib-build/natives/cstubs.bc
+: *.kt | kotlin/newplus.klib $(DEPS) |> kotlinc-native %f -nostdlib -Xoverride-konan-properties="clangOptFlags.macos_x64=-Oz;linkerKonanFlags.macos_x64=-lSystem -lc++ -lobjc -framework Foundation -sdk_version 12.0.0" -opt -library kotlin/newplus.klib -linker-options $(DEPS) -o kotlin_hello && rm -rf kotlin_hello.kexe.dSYM && strip kotlin_hello.kexe |> kotlin_hello.kexe

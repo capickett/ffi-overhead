@@ -1,0 +1,3 @@
+headers = plus.h
+staticLibraries = libnewplus.so
+libraryPaths = newplus
